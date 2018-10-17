@@ -1,0 +1,7 @@
+baseURL = "http://example.org/"
+languageCode = "ja"
+title = "Listen:443"
+
+
+[params]
+  subTitle = "Developing Like Singing A Song"
