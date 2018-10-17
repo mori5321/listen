@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Listen:443</title>
-    <link>http://example.org/post/</link>
+    <link>http://listen443.netlify.com/post/</link>
     <description>Recent content in Posts on Listen:443</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Tue, 16 Oct 2018 01:16:50 +0900</lastBuildDate>
     
-	<atom:link href="http://example.org/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://listen443.netlify.com/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hello</title>
-      <link>http://example.org/post/hello/</link>
+      <link>http://listen443.netlify.com/post/hello/</link>
       <pubDate>Tue, 16 Oct 2018 01:16:50 +0900</pubDate>
       
-      <guid>http://example.org/post/hello/</guid>
+      <guid>http://listen443.netlify.com/post/hello/</guid>
       <description>HelloWorld こんにちは。これは私の最初の投稿です。</description>
     </item>
     
