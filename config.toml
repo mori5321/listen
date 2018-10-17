@@ -1,4 +1,5 @@
-baseURL = "http://listen443.netlify.com/"
+baseURL = "http://jolly-babbage-4d89ac.netlify.com/"
+
 languageCode = "ja"
 title = "Listen:443"
 
