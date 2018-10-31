@@ -1,13 +1,16 @@
 ---
 title: "Webpack入門チュートリアル Vue.js環境構築編"
 date: 2018-10-18T18:03:03+09:00
+desciption: aaaaaaa
 ---
 
 本記事ではWebpackを用いて、Vue.jsの環境構築を行います。
 vue-cliを使わずに1からつくっていくことで、webpack初学者の方がwebpackの基礎を理解できるようにしています。
 
+<!--more--> 
 
-## 目次
+
+# 目次
 1. webpackの導入
 2. webpack.config.jsの設定
 3. ES6のトランスパイル(babel導入)
@@ -18,7 +21,7 @@ vue-cliを使わずに1からつくっていくことで、webpack初学者の�
 
 
 
-## 1. webpackの導入  
+## 1. webpackの導入
 
 さっそくwebpackの導入を行いましょう。
 
@@ -204,6 +207,7 @@ class Person という記述が見つからず、function Person() に変換さ�
 これでES6をES5へとトランスパイルすることに成功しました。
 
 ## 4. .vue拡張子への対応
+### 4-1. パッケージのインストール
 Vue.jsの利用に必要なパッケージを入れていきましょう。
 
 ```
@@ -217,10 +221,138 @@ npm install -D vue-loader vue-template-compiler
 |vue-loader|.vue拡張子を読み込むためのloader|
 |vue-template-compiler|template構文の利用に必要なパッケージ|
 
+### 4-2. Loaderの定義
+
+webpack.config.jsにて、Loaderを以下のように定義しましょう。
+
+``` webpack.config.js
+const path = require('path');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
+module.exports = {
+  entry: {
+    index: './src/index.js'
+  },
+  output: {
+    filename: '[name].js',
+    path: path.join(__dirname, 'dist/javascript')
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
+
+      {
+        test: /\.vue$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'vue-loader',
+        }
+      }
+    ]
+  },
+  plugins: [
+    new VueLoaderPlugin()
+  ]
+}
+```
+
+
+
+### 4-3. Vue.jsのSFCを作成しよう
+
+src配下にApp.vueを作成しましょう。
+
+
+``` src/App.vue
+
+<template>
+  <div>
+    <h1>HelloWorld</h1>
+    <p>Your name {{ name }}</p>
+    <input v-model="name">
+  </div>
+</template>
+
+<script>
+
+export default {
+  data() {
+    return {
+      name: 'Tommy'
+    }
+  }
+}
+
+</script>
+
+```
+
+
+src/index.jsでApp.jsをimportし、htmlにmountする記述を書きます。
+
+``` src/index.js
+import Vue from 'vue';
+import App from './App.vue';
+
+new Vue(App).$mount('#hello')
+```
+
+最後にindex.htmlをdist配下に作成しましょう。
+
+``` dist/index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+
+
+<div id="hello"></div>
+
+<script src="javascript/index.js"></script>
+</body>
+</html>
+
+
+```
+
+
+### 4-4. webpackの実行
+webpackを実行。
+
+```
+./node_modules/.bin/webpack
+```
+
+index.htmlを開きましょう！
+
+
 
 ## 5. scssへの対応
 
 ## 6. webpack-dev-serverへの対応
+
+```
+npm install -D webpack-dev-server
+```
+
+
+```
+
+```
+
 
 ## 7. 絶対パス指定でのファイルimportができるようにする
 
