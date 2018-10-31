@@ -3,6 +3,8 @@ baseURL = "https://jolly-babbage-4d89ac.netlify.com/"
 languageCode = "ja"
 title = "Listen:443"
 
+googleAnalytics = "UA-127758164-2"
+
 
 [params]
   subTitle = "Developing Like Singing A Song"
