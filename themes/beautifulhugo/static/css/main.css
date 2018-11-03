@@ -1,3 +1,21 @@
+pre {
+  margin-top: 25px !important;
+  margin-bottom: 25px !important;
+}
+
+h1 {
+  margin: 40px 0 20px;
+}
+
+h2 {
+  margin: 35px 0 20px;
+}
+
+h3 {
+  margin: 20px 0 15px;
+}
+
+
 body {
   font-family: 'Lora', 'Times New Roman', serif;
   font-size: 18px;
@@ -741,3 +759,4 @@ div.splitbox div.right {
                display:inline-block;
                float:left;}
 }
+
