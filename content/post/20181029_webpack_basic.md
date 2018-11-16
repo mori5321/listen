@@ -1,13 +1,13 @@
 ---
 title: "Webpack入門チュートリアル Vue.js環境構築編"
 date: 2018-10-18T18:03:03+09:00
-desciption: aaaaaaa
+description: Webpack for Beginner with Vue.js
 ---
 
 本記事ではWebpackを用いて、Vue.jsの環境構築を行います。
 vue-cliを使わずに1からつくっていくことで、webpack初学者の方がwebpackの基礎を理解できるようにしています。
 
-<!--more--> 
+<!--more-->
 
 
 # 目次
@@ -33,8 +33,8 @@ npm install -D webpack webpack-cli
 
 ### 1-2. ファイル作成
 
-次に、JavaScriptのファイルを作成します。  
-今回はsrc/index.jsというファイルを作成しましょう。  
+次に、JavaScriptのファイルを作成します。
+今回はsrc/index.jsというファイルを作成しましょう。
 
 ```
 mkdir -p src
@@ -494,7 +494,7 @@ npm install -D webpack-dev-server
 // 省略
 
 module.exports =  {
-  // 省略 
+  // 省略
 
   module: {
     // 省略
