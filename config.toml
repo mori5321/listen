@@ -6,6 +6,19 @@ title = "Listen:443"
 googleAnalytics = "UA-127758164-2"
 
 
+[languages]
+  [languages.en]
+    contentDir = "content/en"
+    languageName = "English"
+    weight = 10
+  [languages.ja]
+    contentDir = "content/ja"
+    languageName = "Japanese"
+    weight = 10
+
 [params]
+  description = "TECH::BLOG by moris"
   subTitle = "Developing Like Singing A Song"
   useHLJS = true
+
+
