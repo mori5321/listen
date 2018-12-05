@@ -93,6 +93,7 @@ p result = PersonSchema.execute('
     }
   }
 ').to_h
+# Result: {"data"=>{"persons"=>[{"id"=>"2", "name"=>"Tom"}, {"id"=>"1", "name"=>"Tom"}, {"id"=>"1", "name"=>"Tom"}, {"id"=>"9", "name"=>"Tom"}]}}
 
 p result2 = PersonSchema.execute('
   {
@@ -101,4 +102,6 @@ p result2 = PersonSchema.execute('
     }
   }
 ').to_h
+
+# Result: {"data"=>{"persons_by_name"=>[{"id"=>"1", "name"=>"Tom"}]}}
 ```
