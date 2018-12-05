@@ -1,4 +1,7 @@
-# GraphQL Ruby Sample
+---
+title: "GraphQL Ruby Sample"
+date: 2018-12-05T21:30:00+09:00
+---
 
 To instantly understand GraphQL concept, I made a sample code of by Ruby.
 
