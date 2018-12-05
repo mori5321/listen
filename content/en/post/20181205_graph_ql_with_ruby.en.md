@@ -2,6 +2,7 @@
 
 To instantly understand GraphQL concept, I made a sample code of by Ruby.
 
+<!--more-->
 
 
 ```
