@@ -54,12 +54,10 @@ PersonType = GraphQL::ObjectType.define do
 
   field :id do
     type !types.ID
-    resolve -> (obj, args, ctx) { rand(10) }
   end
 
   field :name do
     type !types.String
-    resolve -> (obj, args, ctx) { 'Tom' }
   end
 end
 
