@@ -15,8 +15,9 @@ module PersonRepository
   @@persons = []
 
   included do
-    def self.all
-      @@persons
+    def self.fetch(limit: )
+      limit = @@persons.length unless limit
+      @@persons[0..limit]
     end
 
     def self.find_by_name(name)
@@ -44,7 +45,7 @@ end
 
 
 # generate person Object
-names = ['Tom', 'Jelly', 'Moris', 'gitgit']
+names = ['Tom', 'Jelly', 'Moris', 'gitgit', 'Gitlab', "Halohalo"]
 persons = names.map {|n| Person.new(name: n) }
 
 
@@ -52,13 +53,8 @@ persons = names.map {|n| Person.new(name: n) }
 PersonType = GraphQL::ObjectType.define do
   name 'Person'
 
-  field :id do
-    type !types.ID
-  end
-
-  field :name do
-    type !types.String
-  end
+  field :id, types.ID
+  field :name, types.String
 end
 
 
@@ -67,7 +63,10 @@ QueryType = GraphQL::ObjectType.define do
   name "Query"
 
   field :persons, types[PersonType] do
-    resolve -> (obj, args, ctx) { Person.all }
+    argument :limit, types.Int
+    resolve -> (obj, args, ctx) {
+      Person.fetch(limit: args[:limit])
+    }
   end
 
   field :persons_by_name, types[PersonType] do
@@ -83,6 +82,8 @@ PersonSchema = GraphQL::Schema.define do
 end
 
 
+puts "----"
+
 # ExecuteQuery
 p result = PersonSchema.execute('
   {
@@ -91,7 +92,19 @@ p result = PersonSchema.execute('
     }
   }
 ').to_h
-# Result: {"data"=>{"persons"=>[{"id"=>"2", "name"=>"Tom"}, {"id"=>"1", "name"=>"Tom"}, {"id"=>"1", "name"=>"Tom"}, {"id"=>"9", "name"=>"Tom"}]}}
+
+puts "----"
+
+# ExecuteQuery
+p result = PersonSchema.execute('
+  {
+    persons(limit: 3) {
+      id name
+    }
+  }
+').to_h
+
+puts "----"
 
 p result2 = PersonSchema.execute('
   {
@@ -101,5 +114,19 @@ p result2 = PersonSchema.execute('
   }
 ').to_h
 
-# Result: {"data"=>{"persons_by_name"=>[{"id"=>"1", "name"=>"Tom"}]}}
+```
+
+
+Results are like this.
+
+``` .bash
+
+----
+{"data"=>{"persons"=>[{"id"=>"18", "name"=>"Tom"}, {"id"=>"71", "name"=>"Jelly"}, {"id"=>"4", "name"=>"Moris"}, {"id"=>"79", "name"=>"gitgit"}, {"id"=>"48", "name"=>"Gitlab"}, {"id"=>"74", "name"=>"Halohalo"}]}}
+----
+{"data"=>{"persons"=>[{"id"=>"18", "name"=>"Tom"}, {"id"=>"71", "name"=>"Jelly"}, {"id"=>"4", "name"=>"Moris"}, {"id"=>"79", "name"=>"gitgit"}]}}
+----
+{"data"=>{"persons_by_name"=>[{"id"=>"18", "name"=>"Tom"}]}}
+
+
 ```
