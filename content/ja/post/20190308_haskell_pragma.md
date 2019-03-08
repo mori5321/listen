@@ -1,5 +1,5 @@
 ---
-title: "20190308_haskell_pragma"
+title: "{-# #-}←Haskellのこいつは何なのか。"
 date: 2019-03-08T08:25:08+09:00
 draft: false
 ---
